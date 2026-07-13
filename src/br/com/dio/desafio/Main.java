@@ -21,5 +21,7 @@ public class Main {
         mentoria1.setDescricao("Como lidar com Java");
         mentoria1.setData(LocalDate.now());
         System.out.println(mentoria1);
+
+        Conteudo conteudo = new Curso();
     }
 }
