@@ -1,4 +1,4 @@
-package br.com.dio.desafio;
+package br.com.dio.desafio.dominio;
 
 import java.util.LinkedHashSet;
 import java.util.Objects;
@@ -10,7 +10,7 @@ public class Dev {
     private Set<Conteudo> conteudosInscricao = new LinkedHashSet<>();
     private Set<Conteudo> conteudosConcluidos = new LinkedHashSet<>();
 
-    public void InscreverBootcamp(Bootcamp bootcamp) {
+    public void inscreverBootcamp(Bootcamp bootcamp) {
         this.conteudosInscricao.addAll(bootcamp.getConteudos());
         bootcamp.getDevsInscritos().add(this);
     }
