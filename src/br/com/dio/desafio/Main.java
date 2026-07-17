@@ -6,6 +6,9 @@ import br.com.dio.desafio.dominio.Dev;
 import br.com.dio.desafio.dominio.Mentoria;
 
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args){
@@ -34,6 +37,8 @@ public class Main {
         bootcamp.getConteudos().add(curso2);
         bootcamp.getConteudos().add(mentoria1);
 
+        System.out.println("--------");
+
         Dev devEmerson = new Dev();
         devEmerson.setNome("Emerson");
         devEmerson.inscreverBootcamp(bootcamp);
@@ -44,6 +49,8 @@ public class Main {
         System.out.println("Conteudos incritos Emerson " + devEmerson.getConteudosInscricao());
         System.out.println("Conteudos concluidos Emerson " + devEmerson.getConteudosConcluidos());
         System.out.println("XP: " + devEmerson.calcularTotalXp());
+        devEmerson.exibirRelatorio();
+        devEmerson.emitirCertificado();
 
         System.out.println("--------------------------");
 
@@ -58,5 +65,16 @@ public class Main {
         System.out.println("Conteudos incritos Everton " + devEverton.getConteudosInscricao());
         System.out.println("Conteudos concluidos Everton " + devEverton.getConteudosConcluidos());
         System.out.println("XP: " + devEverton.calcularTotalXp());
+        devEverton.exibirRelatorio();
+        devEverton.emitirCertificado();
+
+        System.out.println("===== RANKING DE DEVS POR XP =====");
+        List<Dev> rankingDevs = Arrays.asList(devEmerson, devEverton);
+
+        rankingDevs.stream()
+                .sorted(Comparator.comparingDouble(Dev::calcularTotalXp).reversed())
+                .forEach(dev -> System.out.println(
+                        dev.getNome() + " - XP: " + dev.calcularTotalXp()
+                ));
     }
 }
